@@ -27,6 +27,12 @@ function displayLibrary() {
         mainLib.removeChild(mainLib.firstChild); //remove children to avoid duplication
     }
     for (const element of myLibrary) {
+        const newDiv = document.createElement("div");
+        newDiv.setAttribute("class", "cardBook");
+        const newH3 = document.createElement("h3");
+        const newPBy = document.createElement("p");
+        const newH4 = document.createElement("h4");
+        const newPPages = document.createElement("p");
         const newP = document.createElement("p");
         const delBtn = document.createElement("button");
         delBtn.setAttribute("class", "delBtn");
@@ -37,9 +43,17 @@ function displayLibrary() {
         const statusButtonContent = document.createTextNode(`Change Status`);
         statusBtn.appendChild(statusButtonContent);
         const bookId = element.id;
-        newP.setAttribute("id", bookId);
-        let newContent = document.createTextNode(`${element.title} by ${element.author}, ${element.pages} pages long. Status = ${element.read}`);
-        newP.appendChild(newContent);
+        newDiv.setAttribute("id", bookId);
+        let h3Content = document.createTextNode(`${element.title}`);
+        newH3.appendChild(h3Content);
+        let pByContent = document.createTextNode(`by`);
+        newPBy.appendChild(pByContent);
+        let h4Content = document.createTextNode(`${element.author}`);
+        newH4.appendChild(h4Content);
+        let pPagesContent = document.createTextNode(`No of pages: ${element.pages}.`);
+        newPPages.appendChild(pPagesContent);
+        let newPContent = document.createTextNode(`Status: ${element.read}.`);
+        newP.appendChild(newPContent);
 
         statusBtn.addEventListener("click", (event) => {
         
@@ -47,17 +61,17 @@ function displayLibrary() {
                 Object.defineProperty(element, "read", {
                     value: "Not Read"
                 }); 
-                newContent.remove();
-                newContent = document.createTextNode(`${element.title} by ${element.author}, ${element.pages} pages long. Status = ${element.read}`);
-                newP.appendChild(newContent);
+                newPContent.remove();
+                newPContent = document.createTextNode(`Status: ${element.read}.`);
+                newP.appendChild(newPContent);
                 console.log(myLibrary);
             } else if (element.read == "Not Read") {
                 Object.defineProperty(element, "read", {
                     value: "Read"
                 }); 
-                newContent.remove();
-                newContent = document.createTextNode(`${element.title} by ${element.author}, ${element.pages} pages long. Status = ${element.read}`);
-                newP.appendChild(newContent);
+                newPContent.remove();
+                newPContent = document.createTextNode(`Status: ${element.read}.`);
+                newP.appendChild(newPContent);
                 console.log(myLibrary);
             }
         });
@@ -65,8 +79,8 @@ function displayLibrary() {
         delBtn.addEventListener("click", (event) => {
             
             document.getElementById(bookId).remove();
-            delBtn.remove();
-            statusBtn.remove();
+            // delBtn.remove();
+            // statusBtn.remove();
             const index = myLibrary.findIndex(element => element.id === bookId);
             
             if (index !== -1) {
@@ -75,9 +89,14 @@ function displayLibrary() {
                 console.log(myLibrary);
         });
         
-        mainLib.appendChild(newP);
-        mainLib.appendChild(delBtn);
-        mainLib.appendChild(statusBtn);
+        newDiv.appendChild(newH3);
+        newDiv.appendChild(newPBy);
+        newDiv.appendChild(newH4);
+        newDiv.appendChild(newPPages);
+        newDiv.appendChild(newP);
+        newDiv.appendChild(statusBtn);
+        newDiv.appendChild(delBtn);
+        mainLib.appendChild(newDiv);
         console.log(myLibrary);
     }
 }
