@@ -132,3 +132,7 @@ cancelBtn.addEventListener("click", (event) => {
   bookForm.reset();
   displayLibrary();
 });
+
+
+//LLM's one liner
+//b=[],m=document.querySelector(".mainLib"),d=document.querySelector("#bookDialog"),f=document.querySelector("#bookForm"),s=document.querySelector("#showForm"),c=document.querySelector("#confirmBtn"),x=document.querySelector("#cancelBtn"),r=()=>{m.innerHTML=b.map((a,i)=>`<div id="${a.id}"><h3>${a.title}</h3><p>by</p><h4>${a.author}</h4><p>Pages:${a.pages}</p><p>Status:${a.read}</p><button class="t">Change</button><button class="del">Delete</button></div>`).join("");[...m.querySelectorAll(".t")].forEach((a,i)=>a.onclick=_=>{b[i].read=b[i].read=="Read"?"Not Read":"Read";r();});[...m.querySelectorAll(".del")].forEach((a,i)=>a.onclick=_=>{b.splice(i,1);r();});},a=(t,u,p,v)=>b.push({id:crypto.randomUUID(),title:t,author:u,pages:p,read:v});s.onclick=_=>d.showModal();c.onclick=e=>{e.preventDefault();a(document.querySelector("#title").value,document.querySelector("#author").value,document.querySelector("#pages").value,document.querySelector('input[name="status"]:checked').value);d.close();f.reset();r();};x.onclick=_=>{d.close();f.reset();r();};
