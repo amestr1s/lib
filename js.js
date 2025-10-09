@@ -38,7 +38,9 @@ function displayLibrary() {
         statusBtn.appendChild(statusButtonContent);
         const bookId = element.id;
         newP.setAttribute("id", bookId);
-        
+        let newContent = document.createTextNode(`${element.title} by ${element.author}, ${element.pages} pages long. Status = ${element.read}`);
+        newP.appendChild(newContent);
+
         statusBtn.addEventListener("click", (event) => {
         
             if (element.read == "Read") {
@@ -73,16 +75,12 @@ function displayLibrary() {
                 console.log(myLibrary);
         });
         
-        let newContent = document.createTextNode(`${element.title} by ${element.author}, ${element.pages} pages long. Status = ${element.read}`);
-        newP.appendChild(newContent);
         mainLib.appendChild(newP);
         mainLib.appendChild(delBtn);
         mainLib.appendChild(statusBtn);
         console.log(myLibrary);
     }
 }
-
-
 
 const showForm = document.querySelector("#showForm");
 const bookDialog = document.querySelector("#bookDialog");
@@ -92,7 +90,6 @@ const authorInput = document.querySelector("#author");
 const pagesInput = document.querySelector("#pages");
 const cancelBtn = document.querySelector("#cancelBtn");
 const bookForm = document.querySelector("#bookForm");
-
 
 showForm.addEventListener("click", () => {
   bookDialog.showModal();
