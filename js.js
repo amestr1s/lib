@@ -79,8 +79,7 @@ function displayLibrary() {
         delBtn.addEventListener("click", (event) => {
             
             document.getElementById(bookId).remove();
-            // delBtn.remove();
-            // statusBtn.remove();
+            
             const index = myLibrary.findIndex(element => element.id === bookId);
             
             if (index !== -1) {
