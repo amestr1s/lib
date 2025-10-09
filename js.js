@@ -24,14 +24,64 @@ function addBookToLibrary(title, author, pages, read) {
     myLibrary.push(new Book(crypto.randomUUID(), title, author, pages, read));
 }
 
-addBookToLibrary("mitsaki", "mitsoulaki", "322", "read");
-addBookToLibrary("mitsakis", "mitsoulakis", "342", "notread");
-console.log(myLibrary);
+// addBookToLibrary("mitsaki", "mitsoulaki", "322", "read");
+// addBookToLibrary("mitsakis", "mitsoulakis", "342", "notread");
+// console.log(myLibrary);
+
+
+const mainLib = document.querySelector(".mainLib");
 
 function displayLibrary() {
+    while (mainLib.hasChildNodes()) {
+        mainLib.removeChild(mainLib.firstChild);
+    }
     for (const element of myLibrary) {
-        console.log(element);
+        const newP = document.createElement("p");
+        const newContent = document.createTextNode(`${element.title} by ${element.author}, ${element.pages} pages long.`);
+        newP.appendChild(newContent);
+        mainLib.appendChild(newP);
     }
 }
 
-displayLibrary();
+// displayLibrary();
+
+const showForm = document.querySelector("#showForm");
+const bookDialog = document.querySelector("#bookDialog");
+const confirmBtn = document.querySelector("#confirmBtn");
+const titleInput = document.querySelector("#title");
+const authorInput = document.querySelector("#author");
+const pagesInput = document.querySelector("#pages");
+const cancelBtn = document.querySelector("#cancelBtn");
+const bookForm = document.querySelector("#bookForm");
+
+
+showForm.addEventListener("click", () => {
+  bookDialog.showModal();
+});
+
+confirmBtn.addEventListener("click", (event) => {
+  event.preventDefault(); // We don't want to submit this fake form
+  
+  const status = document.querySelector('input[name="status"]:checked')?.value;
+  
+  addBookToLibrary(titleInput.value, authorInput.value, pagesInput.value, status);
+
+  bookDialog.close(); // Have to send the select box value here.
+//   document.querySelector("#title").value = "";
+//   document.querySelector("#author").value = "";
+//   document.querySelector("#pages").value = "";
+//   document.querySelector("#read").checked = true;
+  bookForm.reset();
+  displayLibrary();
+});
+
+cancelBtn.addEventListener("click", (event) => {
+  
+  bookDialog.close(); // Have to send the select box value here.
+//   document.querySelector("#title").value = "";
+//   document.querySelector("#author").value = "";
+//   document.querySelector("#pages").value = "";
+//   document.querySelector("#read").checked = true;
+  bookForm.reset();
+  displayLibrary();
+});
