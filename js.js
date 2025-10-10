@@ -50,9 +50,9 @@ function displayLibrary() {
         newPBy.appendChild(pByContent);
         let h4Content = document.createTextNode(`${element.author}`);
         newH4.appendChild(h4Content);
-        let pPagesContent = document.createTextNode(`No of pages: ${element.pages}.`);
+        let pPagesContent = document.createTextNode(`No of pages: ${element.pages}`);
         newPPages.appendChild(pPagesContent);
-        let newPContent = document.createTextNode(`Status: ${element.read}.`);
+        let newPContent = document.createTextNode(`Status: ${element.read}`);
         newP.appendChild(newPContent);
 
         statusBtn.addEventListener("click", (event) => {
@@ -62,7 +62,7 @@ function displayLibrary() {
                     value: "Not Read"
                 }); 
                 newPContent.remove();
-                newPContent = document.createTextNode(`Status: ${element.read}.`);
+                newPContent = document.createTextNode(`Status: ${element.read}`);
                 newP.appendChild(newPContent);
                 console.log(myLibrary);
             } else if (element.read == "Not Read") {
@@ -70,7 +70,7 @@ function displayLibrary() {
                     value: "Read"
                 }); 
                 newPContent.remove();
-                newPContent = document.createTextNode(`Status: ${element.read}.`);
+                newPContent = document.createTextNode(`Status: ${element.read}`);
                 newP.appendChild(newPContent);
                 console.log(myLibrary);
             }
