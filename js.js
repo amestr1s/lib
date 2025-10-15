@@ -3,16 +3,27 @@ const myLibrary = [];
 
 
 // book constructor
-function Book(id, title, author, pages, read) {
-    if (!new.target) {
-        throw Error("Use the 'new' operator!");
-    }
-    this.id = id;
-    this.title = title;
-    this.author = author;
-    this.pages = pages;
-    this.read = read;
+// function Book(id, title, author, pages, read) {
+//     if (!new.target) {
+//         throw Error("Use the 'new' operator!");
+//     }
+//     this.id = id;
+//     this.title = title;
+//     this.author = author;
+//     this.pages = pages;
+//     this.read = read;
     
+// }
+
+// book class
+class Book {
+    constructor(id, title, author, pages, read) {
+        this.id = id;
+        this.title = title;
+        this.author = author;
+        this.pages = pages;
+        this.read = read;
+    }
 }
 
 //function to add book objects in myLibrary array
